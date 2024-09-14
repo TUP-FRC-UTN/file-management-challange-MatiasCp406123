@@ -1,0 +1,8 @@
+<div class="owner-circles">
+    <div *ngFor="let owner of displayedOwners" class="owner-circle" [title]="owner.name">
+      <img [src]="owner.avatarUrl" [alt]="owner.name">
+    </div>
+    <div *ngIf="remainingOwners > 0" class="owner-circle remaining" [title]="'And ' + remainingOwners + ' more'">
+      +{{ remainingOwners }}
+    </div>
+  </div>

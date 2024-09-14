@@ -1,0 +1,42 @@
+
+<form  [formGroup]="fileForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-4 ">
+      <label for="name" class="form-label">Nombre</label>
+      <div class="input-group has-validation">
+        <input type="text" class="form-control " formControlName="name"  name="name" placeholder="Ingrese el nombre" id="name" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="fecha" class="form-label">Fecha</label>
+      <input type="date" class="form-control " id="fecha" aria-describedby="validationServer03Feedback" required>
+    </div>
+    <div class="col-md-3">
+      <label for="type" class="form-label">Tipo Archivo</label>
+      <select class="form-select is-valid"  formControlName="type"   id="type" aria-describedby="validationServer04Feedback" required>
+        @for(type of fileType;track type){
+          <option [ngValue]="type">{{getFileTypeName(type)}}</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="parentId" class="form-label">Carpeta </label>
+      <select class="form-select is-valid" id="parentId" formControlName="parentId" aria-describedby="validationServer04Feedback" required>
+        <option>...</option>
+        @for(folder of folders; track folder.id){
+          <option [value]="folder.id">{{folder.name}}</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="owners" class="form-label">Dueños</label>
+      <select class="form-select is-valid" id="owners" formControlName="owners" aria-describedby="validationServer04Feedback" required>
+        <option>...</option>
+        @for(owner of allOwners; track owner.name){
+          <option [ngValue]="owner">{{owner.name}}</option>
+        }
+      </select>
+    </div>
+
+      <button class="btn btn-primary" type="submit" (click)="onCancel()">Volver</button>
+       <button class="btn btn-primary " type="submit" >Guardar</button>
+  </form>
